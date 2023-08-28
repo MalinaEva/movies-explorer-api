@@ -1,4 +1,4 @@
-const { OK } = require('./statuses');
+const { OK } = require('../config/statuses');
 
 module.exports.sendResponse = (res, data, statusCode = OK, withoutVersion = true) => {
   let responseData = data;

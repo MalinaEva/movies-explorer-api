@@ -5,7 +5,7 @@ const {
   INTERNAL_SERVER_ERROR_MESSAGE,
   CONFLICT,
   CONFLICT_MESSAGE,
-} = require('../utils/statuses');
+} = require('../config/statuses');
 
 function handleError (err, res) {
   if (['CastError', 'ValidationError'].includes(err.name)) {

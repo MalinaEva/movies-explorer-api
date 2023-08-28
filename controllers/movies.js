@@ -3,7 +3,7 @@ const NotFound = require('../errors/NotFound');
 const { sendResponse } = require('../utils/sendResponse');
 const {
   CREATED, MOVIE_DELETED, MOVIE_NOT_FOUND,
-} = require('../utils/statuses');
+} = require('../config/statuses');
 const Forbidden = require('../errors/Forbidden');
 
 exports.getMovies = (req, res, next) => {

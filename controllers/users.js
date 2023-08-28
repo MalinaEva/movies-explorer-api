@@ -8,7 +8,7 @@ const NotFound = require('../errors/NotFound');
 const { sendResponse } = require('../utils/sendResponse');
 const {
   CREATED, SUCCESS_LOGIN, USER_NOT_FOUND,
-} = require('../utils/statuses');
+} = require('../config/statuses');
 
 module.exports.createUser = (req, res) => {
   const {

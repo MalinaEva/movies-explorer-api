@@ -1,4 +1,4 @@
-const { UNAUTHORIZED, INCORRECT_EMAIL_OR_PASSWORD } = require('../utils/statuses');
+const { UNAUTHORIZED, INCORRECT_EMAIL_OR_PASSWORD } = require('../config/statuses');
 
 class AuthError extends Error {
   constructor (message = INCORRECT_EMAIL_OR_PASSWORD, statusCode = UNAUTHORIZED) {
