@@ -9,8 +9,8 @@ const { DB_URL, PORT, API_PREFIX } = require('./config/config');
 const { requestLogger, errorLogger, debugLogger } = require('./middleware/logger');
 const rateLimitConfig = require('./config/rateLimit');
 const corsConfig = require('./config/cors');
-const { sendResponse } = require('./utils/sendResponse');
-const { NOT_FOUND_MESSAGE, NOT_FOUND } = require('./utils/statuses');
+const NotFound = require('./errors/NotFound');
+const handleError = require('./middleware/errorHandler');
 
 mongoose.connect(DB_URL, {
   useNewUrlParser: true,
@@ -27,7 +27,7 @@ app.use(rateLimit(rateLimitConfig));
 
 app.use(API_PREFIX, routes);
 
-app.use((req, res) => sendResponse(res, { message: NOT_FOUND_MESSAGE }, NOT_FOUND));
+app.use((req, res) => handleError(new NotFound(), res));
 
 app.use(errorLogger);
 app.use(errors());

@@ -2,8 +2,9 @@ const movie = require('../models/movie');
 const NotFound = require('../errors/NotFound');
 const { sendResponse } = require('../utils/sendResponse');
 const {
-  CREATED, FORBIDDEN_MESSAGE, FORBIDDEN, MOVIE_DELETED, MOVIE_NOT_FOUND,
+  CREATED, MOVIE_DELETED, MOVIE_NOT_FOUND,
 } = require('../utils/statuses');
+const Forbidden = require('../errors/Forbidden');
 
 exports.getMovies = (req, res, next) => {
   movie.find({ owner: req.user._id })
@@ -51,7 +52,7 @@ exports.deleteMovie = (req, res, next) => {
       throw new NotFound(MOVIE_NOT_FOUND);
     }
     if (currentMovie.owner.toString() !== req.user._id) {
-      return sendResponse(res, { message: FORBIDDEN_MESSAGE }, FORBIDDEN);
+      throw new Forbidden();
     }
     return sendResponse(res, { message: MOVIE_DELETED });
   })
